@@ -3465,6 +3465,10 @@ body.modal-open {
 }
 .aside-fee em {
   color: #929dad;
+  font-size: 0;
+}
+.aside-fee em:after {
+  content: "TOTAL PRICE";
   font-size: 7px;
 }
 .form-chapter {
