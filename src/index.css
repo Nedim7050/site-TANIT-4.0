@@ -3655,9 +3655,22 @@ body.modal-open {
   .mobile-progress {
     grid-template-columns: auto 1fr;
   }
+  .mobile-progress:after {
+    content: "FULL CONFERENCE · 105 TND TOTAL";
+    grid-column: 2;
+    width: fit-content;
+    margin-top: 7px;
+    padding: 6px 10px;
+    border: 1px solid #9c742955;
+    border-radius: 999px;
+    background: #9c742912;
+    color: #76561c;
+    font: 700 9px "Cinzel", serif;
+    letter-spacing: 0.09em;
+  }
   .mobile-progress > img {
     display: block;
-    grid-row: 1/4;
+    grid-row: 1/5;
     width: 48px;
     height: 48px;
     object-fit: cover;
