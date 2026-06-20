@@ -37,6 +37,17 @@ When you update the Apps Script later, create a **new version** under **Manage d
 
 ## Customize
 
+### Pause or reopen registrations
+
+Open `src/siteConfig.js` and change only `registrationPaused`:
+
+```js
+registrationPaused: true  // pause registrations
+registrationPaused: false // reopen the full website
+```
+
+Commit and push the change to GitHub. Vercel will redeploy the selected mode automatically.
+
 - Team members: edit `leadership` and `keyAreas` in `src/data.js`. A member may also have a `hoverPhoto` for the animated alternate portrait shown on hover or tap.
 - Houses and quiz: edit `houses` and `quiz` in `src/data.js`.
 - Text, fees, and links: edit `src/App.jsx`.

@@ -4,6 +4,7 @@ import { ArrowRight, Camera, Check, ChevronLeft, ChevronRight, Download, Feather
 import { houses, keyAreas, leadership, logoUrl, quiz } from './data'
 import owlAsset from './assets/tanit-owl-final.png'
 import toteBagAsset from './assets/tanit-tote-v2-transparent.png'
+import { siteConfig } from './siteConfig'
 
 const initialForm = {
   fullName:'', country:'Tunisia', entityName:'', lcName:'', position:'', cin:'', email:'', phone:'', emergencyPhone:'', gender:'', birthDate:'',
@@ -177,4 +178,24 @@ function Success({form,house,download}){return <div className="success"><div cla
 
 function Contact(){return <><section id="contact" className="section contact"><SectionTitle eyebrow="THE OWLERY" title="Send word to the academy" copy="Questions about your invitation? Our keepers are never far from the owlery."/><div className="contact-links"><a href="https://www.instagram.com/ittt_tanit/?hl=ar" target="_blank" rel="noreferrer"><Camera/><div><small>THE MOVING PORTRAITS</small>Instagram</div><ArrowRight/></a><a href="https://www.facebook.com/groups/1031234249068230?locale=fr_FR" target="_blank" rel="noreferrer"><Users/><div><small>THE COMMON ROOM</small>Facebook Group</div><ArrowRight/></a><a href="mailto:aminebenattaya2005@gmail.com"><Mail/><div><small>OWL POST</small>Email us</div><ArrowRight/></a></div></section><footer><div className="brand"><img src={logoUrl} alt="TANIT 4.0"/><div>TANIT <small>THE FOURTH CHAPTER</small></div></div></footer></>}
 
-export default function App(){const [registration,setRegistration]=useState(false);return <><MagicTrail/><GlobalMagic/><OwlDelivery/><Nav onRegister={()=>setRegistration(true)}/><main><Home onRegister={()=>setRegistration(true)}/><About/><Houses/><Team/><Contact/></main><MusicPlayer/><Registration open={registration} onClose={()=>setRegistration(false)}/></>}
+function RegistrationPaused(){
+  return <main className="pause-page">
+    <MagicalBackground/>
+    <MagicTrail/>
+    <motion.div className="pause-card" initial={{opacity:0,y:28,scale:.96}} animate={{opacity:1,y:0,scale:1}} transition={{duration:.8,ease:[.22,.75,.25,1]}}>
+      <motion.img src={logoUrl} alt="TANIT 4.0" initial={{opacity:0,scale:.75,rotate:-8}} animate={{opacity:1,scale:1,rotate:0}} transition={{delay:.15,duration:.7,type:'spring'}}/>
+      <span className="pause-eyebrow"><Pause size={13}/> THE ACADEMY GATES ARE RESTING</span>
+      <h1>REGISTRATIONS<br/><em>ARE PAUSED</em></h1>
+      <div className="pause-divider"><i/>✦<i/></div>
+      <p>The first round of letters has been sealed.</p>
+      <strong>Please await the second round of registration.</strong>
+      <small>Keep your owl close — the academy gates will reopen soon.</small>
+      <div className="pause-links">
+        <a href="https://www.instagram.com/ittt_tanit/?hl=ar" target="_blank" rel="noreferrer"><Camera size={17}/> Follow updates on Instagram</a>
+        <a href="mailto:aminebenattaya2005@gmail.com"><Mail size={17}/> Contact the academy</a>
+      </div>
+    </motion.div>
+  </main>
+}
+
+export default function App(){const [registration,setRegistration]=useState(false);if(siteConfig.registrationPaused)return <RegistrationPaused/>;return <><MagicTrail/><GlobalMagic/><OwlDelivery/><Nav onRegister={()=>setRegistration(true)}/><main><Home onRegister={()=>setRegistration(true)}/><About/><Houses/><Team/><Contact/></main><MusicPlayer/><Registration open={registration} onClose={()=>setRegistration(false)}/></>}
